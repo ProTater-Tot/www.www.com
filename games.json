@@ -2,8 +2,8 @@
   {
     "id": "game1",
     "title": "Hole.io",
-    "thumbnail": "https://i.ytimg.com/vi/SZWoB-MxB6w/maxresdefault.jpg",
-    "iframe_url": "https://holeio.com"
+    "thumbnail": "https://ytimg.com",
+    "iframe_url": "hole.io/"
   },
   {
     "id": "game2",
@@ -20,8 +20,7 @@
   {
     "id": "game14",
     "title": "We Are Warriors!",
-    "thumbnail": "https://i.ytimg.com/vi/pG2ChrSlT6A/maxresdefault.jpg",
+    "thumbnail": "https://ytimg.com",
     "iframe_url": "we-are-warriors/"
   }
-
 ]
