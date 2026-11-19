@@ -1,33 +1,75 @@
 window.addEventListener("DOMContentLoaded", () => {
+  // --- 1. TROPHY & W INTRO ANIMATION ---
   const trophyWrapper = document.getElementById("trophy-wrapper");
   const cracks = document.getElementById("cracks");
   const smackW = document.getElementById("smack-w");
 
-  // 1. Start the trophy drop shortly after load
   setTimeout(() => {
     trophyWrapper.classList.add("drop");
   }, 200);
 
-  // 2. When trophy hits the ground (500ms later): break ground & shake screen
   setTimeout(() => {
     cracks.classList.add("broken");
     document.body.classList.add("shake");
   }, 700);
 
-  // Clean up first shake so it can shake again when W hits
   setTimeout(() => {
     document.body.classList.remove("shake");
   }, 1100);
 
-  // 3. Smack the W onto the front of the trophy & shake again
   setTimeout(() => {
     smackW.classList.add("smack");
     document.body.classList.add("shake");
   }, 1300);
 
-  // Clean up second shake
   setTimeout(() => {
     document.body.classList.remove("shake");
   }, 1700);
+
+  // --- 2. LOAD GAME LINKS FROM games.json ---
+  const gamesList = document.getElementById("games-list");
+
+  fetch("games.json")
+    .then(response => {
+      if (!response.ok) {
+        throw new Error("Could not load games.json");
+      }
+      return response.json();
+    })
+    .then(games => {
+      games.forEach(game => {
+        const card = document.createElement("a");
+        card.className = "game-card";
+        card.href = game.url;
+        card.target = "_blank";
+        card.rel = "noopener noreferrer";
+
+        // Add image if provided in games.json
+        if (game.image) {
+          const img = document.createElement("img");
+          img.src = game.image;
+          img.alt = game.title;
+          card.appendChild(img);
+        }
+
+        const content = document.createElement("div");
+        content.className = "game-card-content";
+
+        const title = document.createElement("h3");
+        title.textContent = game.title;
+
+        const desc = document.createElement("p");
+        desc.textContent = game.description;
+
+        content.appendChild(title);
+        content.appendChild(desc);
+        card.appendChild(content);
+        gamesList.appendChild(card);
+      });
+    })
+    .catch(error => {
+      gamesList.innerHTML = "<p>No games found yet. Check your games.json file!</p>";
+      console.error(error);
+    });
 });
 
