@@ -38,11 +38,9 @@ body.shake {
   position: relative;
   z-index: 2;
   margin-bottom: -15px;
-  /* Starts high above the ceiling */
   transform: translateY(-400px);
 }
 
-/* Animation 1: Trophy falls from ceiling */
 #trophy-wrapper.drop {
   animation: trophyFall 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
 }
@@ -58,7 +56,6 @@ body.shake {
   user-select: none;
 }
 
-/* The Giant W (Starts huge in front of the screen, invisible) */
 #smack-w {
   position: absolute;
   top: 50%;
@@ -73,7 +70,6 @@ body.shake {
   user-select: none;
 }
 
-/* Animation 2: W slams onto the front of the trophy */
 #smack-w.smack {
   animation: wSmack 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
@@ -124,10 +120,63 @@ body.shake {
 }
 
 header {
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 1rem;
 }
 
 main {
-  padding: 1rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem 2rem 4rem;
 }
 
+/* JSON Game Links Grid */
+#games-section h2 {
+  color: #ffd700;
+  margin-bottom: 1.5rem;
+}
+
+#games-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+}
+
+.game-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #1a1a1a;
+  border: 2px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.2s, border-color 0.2s;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  border-color: #ffd700;
+}
+
+.game-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-bottom: 2px solid #333;
+  display: block;
+}
+
+.game-card-content {
+  padding: 1.2rem;
+}
+
+.game-card h3 {
+  margin: 0 0 0.5rem;
+  color: #ffd700;
+}
+
+.game-card p {
+  margin: 0;
+  color: #aaa;
+  font-size: 0.95rem;
+}
