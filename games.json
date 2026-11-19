@@ -1,9 +1,9 @@
 [
   {
     "id": "game1",
-    "title": "Game Title 1",
-    "thumbnail": "https://placeholder.com",
-    "iframe_url": "https://example.com"
+    "title": "Hole.io",
+    "thumbnail": "https://i.ytimg.com/vi/SZWoB-MxB6w/maxresdefault.jpg",
+    "iframe_url": "https://holeio.com"
   },
   {
     "id": "game2",
