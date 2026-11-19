@@ -1,15 +1,20 @@
 [
   {
+    "id": "game1",
     "title": "Game Title 1",
-    "description": "Game description goes here.",
-    "url": "https://example.com",
-    "image": "https://placeholder.com"
+    "thumbnail": "https://placeholder.com",
+    "iframe_url": "https://example.com"
   },
   {
+    "id": "game2",
     "title": "Game Title 2",
-    "description": "Game description goes here.",
-    "url": "https://example.com",
-    "image": "https://placeholder.com"
+    "thumbnail": "https://placeholder.com",
+    "iframe_url": "https://example.com"
+  },
+  {
+    "id": "game3",
+    "title": "Gunspin",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvwIuL_VUdSJyWSwn5dRBjD66bAXobE1WDrf5TuhwNoeglFwY:https://msngames.io/images/1765964410_m256x256.webp&s",
+    "iframe_url": "https://gun-spin.com"
   }
 ]
-
