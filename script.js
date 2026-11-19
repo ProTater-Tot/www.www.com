@@ -26,21 +26,10 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("shake");
   }, 1700);
 
-  // --- 2. LOAD GAMES FROM games.json ---
+  // --- 2. LOAD GAMES FROM games.json (OPENS IN NEW WINDOW) ---
   const gamesList = document.getElementById("games-list");
-  const playerContainer = document.getElementById("player-container");
-  const gameIframe = document.getElementById("game-iframe");
-  const currentGameTitle = document.getElementById("current-game-title");
-  const openNewTab = document.getElementById("open-new-tab");
-  const closePlayerBtn = document.getElementById("close-player");
 
-  // Close player button logic
-  closePlayerBtn.addEventListener("click", () => {
-    playerContainer.classList.add("hidden");
-    gameIframe.src = ""; // Stops the game audio/process when closed
-  });
-
-  fetch("games.json")
+  fetch("games.json?v=" + Date.now())
     .then(response => {
       if (!response.ok) {
         throw new Error("Could not load games.json");
@@ -69,13 +58,13 @@ window.addEventListener("DOMContentLoaded", () => {
         content.appendChild(title);
         card.appendChild(content);
 
-        // Open game in the iframe player on click
+        // Open your hosted game folder in a new window
         card.addEventListener("click", () => {
-          currentGameTitle.textContent = game.title;
-          gameIframe.src = game.iframe_url;
-          openNewTab.href = game.iframe_url;
-          playerContainer.classList.remove("hidden");
-          playerContainer.scrollIntoView({ behavior: "smooth" });
+          window.open(
+            game.iframe_url,
+            game.id,
+            "width=1100,height=700,resizable=yes,scrollbars=yes"
+          );
         });
 
         gamesList.appendChild(card);
