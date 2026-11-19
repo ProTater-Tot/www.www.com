@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>We Are Warriors! | ://www.com</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #111;
+      color: #fff;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Top Control Bar */
+    #top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1a1a1a;
+      border-bottom: 2px solid #333;
+      padding: 10px 20px;
+      height: 56px;
+      flex-shrink: 0;
+    }
+
+    .nav-btn {
+      background-color: #222;
+      color: #ffd700;
+      border: 2px solid #333;
+      padding: 6px 14px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: border-color 0.2s, transform 0.1s;
+    }
+
+    .nav-btn:hover {
+      border-color: #ffd700;
+      transform: translateY(-1px);
+    }
+
+    #game-title {
+      color: #ffd700;
+      font-size: 1.2rem;
+      margin: 0;
+    }
+
+    #right-controls {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Full-Height Game Iframe */
+    #game-frame {
+      flex-grow: 1;
+      width: 100%;
+      border: none;
+      background-color: #000;
+    }
+  </style>
+</head>
+<body>
+
+  <header id="top-bar">
+    <a class="nav-btn" href="../">← Back to Hub</a>
+    <h1 id="game-title">We Are Warriors!</h1>
+    <div id="right-controls">
+      <a class="nav-btn" href="https://yandex.com/games/app/380155" target="_blank" rel="noopener noreferrer">Direct Link ↗</a>
+      <button class="nav-btn" id="fullscreen-btn">⛶ Fullscreen</button>
+    </div>
+  </header>
+
+  <iframe id="game-frame" src="https://yandex.com/games/app/380155" allowfullscreen></iframe>
+
+  <script>
+    const fullscreenBtn = document.getElementById("fullscreen-btn");
+    const gameFrame = document.getElementById("game-frame");
+
+    fullscreenBtn.addEventListener("click", () => {
+      if (gameFrame.requestFullscreen) {
+        gameFrame.requestFullscreen();
+      } else if (gameFrame.webkitRequestFullscreen) {
+        gameFrame.webkitRequestFullscreen();
+      }
+    });
+  </script>
+
+</body>
+</html>
