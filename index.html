@@ -25,10 +25,27 @@
   </header>
 
   <main>
-    <!-- Build your games and sections here -->
+    <!-- Embedded Game Player (Hidden until a game is clicked) -->
+    <section id="player-container" class="hidden">
+      <div id="player-header">
+        <h2 id="current-game-title">Playing Game</h2>
+        <div id="player-controls">
+          <a id="open-new-tab" href="#" target="_blank" rel="noopener noreferrer">Open in New Tab ↗</a>
+          <button id="close-player">Close Game ✕</button>
+        </div>
+      </div>
+      <iframe id="game-iframe" src="" allowfullscreen></iframe>
+    </section>
+
+    <!-- Customizable JSON Game Links Section -->
+    <section id="games-section">
+      <h2>Games</h2>
+      <div id="games-list">
+        <!-- Cards from games.json will appear here automatically -->
+      </div>
+    </section>
   </main>
 
   <script src="script.js"></script>
 </body>
 </html>
-
