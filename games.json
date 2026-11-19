@@ -1,1 +1,15 @@
+[
+  {
+    "title": "Game Title 1",
+    "description": "Game description goes here.",
+    "url": "https://example.com",
+    "image": "https://placeholder.com"
+  },
+  {
+    "title": "Game Title 2",
+    "description": "Game description goes here.",
+    "url": "https://example.com",
+    "image": "https://placeholder.com"
+  }
+]
 
