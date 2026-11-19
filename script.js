@@ -26,8 +26,19 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.classList.remove("shake");
   }, 1700);
 
-  // --- 2. LOAD GAME LINKS FROM games.json ---
+  // --- 2. LOAD GAMES FROM games.json ---
   const gamesList = document.getElementById("games-list");
+  const playerContainer = document.getElementById("player-container");
+  const gameIframe = document.getElementById("game-iframe");
+  const currentGameTitle = document.getElementById("current-game-title");
+  const openNewTab = document.getElementById("open-new-tab");
+  const closePlayerBtn = document.getElementById("close-player");
+
+  // Close player button logic
+  closePlayerBtn.addEventListener("click", () => {
+    playerContainer.classList.add("hidden");
+    gameIframe.src = ""; // Stops the game audio/process when closed
+  });
 
   fetch("games.json")
     .then(response => {
@@ -38,16 +49,13 @@ window.addEventListener("DOMContentLoaded", () => {
     })
     .then(games => {
       games.forEach(game => {
-        const card = document.createElement("a");
+        const card = document.createElement("div");
         card.className = "game-card";
-        card.href = game.url;
-        card.target = "_blank";
-        card.rel = "noopener noreferrer";
+        card.id = game.id;
 
-        // Add image if provided in games.json
-        if (game.image) {
+        if (game.thumbnail) {
           const img = document.createElement("img");
-          img.src = game.image;
+          img.src = game.thumbnail;
           img.alt = game.title;
           card.appendChild(img);
         }
@@ -58,12 +66,18 @@ window.addEventListener("DOMContentLoaded", () => {
         const title = document.createElement("h3");
         title.textContent = game.title;
 
-        const desc = document.createElement("p");
-        desc.textContent = game.description;
-
         content.appendChild(title);
-        content.appendChild(desc);
         card.appendChild(content);
+
+        // Open game in the iframe player on click
+        card.addEventListener("click", () => {
+          currentGameTitle.textContent = game.title;
+          gameIframe.src = game.iframe_url;
+          openNewTab.href = game.iframe_url;
+          playerContainer.classList.remove("hidden");
+          playerContainer.scrollIntoView({ behavior: "smooth" });
+        });
+
         gamesList.appendChild(card);
       });
     })
@@ -72,4 +86,3 @@ window.addEventListener("DOMContentLoaded", () => {
       console.error(error);
     });
 });
-
