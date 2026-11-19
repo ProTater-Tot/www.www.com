@@ -1,1 +1,133 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #111;
+  color: #fff;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* Screen Shake Effect */
+body.shake {
+  animation: screenShake 0.4s ease-in-out;
+}
+
+@keyframes screenShake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-10px, 8px); }
+  40% { transform: translate(10px, -6px); }
+  60% { transform: translate(-8px, 4px); }
+  80% { transform: translate(8px, -2px); }
+}
+
+/* Intro Stage */
+#intro-stage {
+  position: relative;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  border-bottom: 4px solid #333;
+  background: radial-gradient(circle at center, #1e1e1e 0%, #111 100%);
+}
+
+#trophy-wrapper {
+  position: relative;
+  z-index: 2;
+  margin-bottom: -15px;
+  /* Starts high above the ceiling */
+  transform: translateY(-400px);
+}
+
+/* Animation 1: Trophy falls from ceiling */
+#trophy-wrapper.drop {
+  animation: trophyFall 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19) forwards;
+}
+
+@keyframes trophyFall {
+  0% { transform: translateY(-400px); }
+  100% { transform: translateY(0); }
+}
+
+#trophy {
+  font-size: 130px;
+  line-height: 1;
+  user-select: none;
+}
+
+/* The Giant W (Starts huge in front of the screen, invisible) */
+#smack-w {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 90px;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 0 0 15px #000, 4px 4px 0 #b8860b;
+  transform: translate(-50%, -50%) scale(8);
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Animation 2: W slams onto the front of the trophy */
+#smack-w.smack {
+  animation: wSmack 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes wSmack {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(8) rotate(-15deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.9) rotate(5deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(-4deg);
+  }
+}
+
+/* Ground & Cracks */
+#ground {
+  position: relative;
+  width: 100%;
+  height: 30px;
+  background-color: #222;
+  z-index: 1;
+}
+
+#cracks {
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%) scale(0);
+  width: 260px;
+  height: 40px;
+  opacity: 0;
+  background-image: 
+    linear-gradient(45deg, transparent 48%, #000 49%, #000 51%, transparent 52%),
+    linear-gradient(-35deg, transparent 48%, #000 49%, #000 51%, transparent 52%),
+    linear-gradient(15deg, transparent 48%, #000 49%, #000 51%, transparent 52%),
+    linear-gradient(-65deg, transparent 48%, #000 49%, #000 51%, transparent 52%);
+  transition: transform 0.1s ease-out, opacity 0.1s;
+}
+
+#cracks.broken {
+  transform: translateX(-50%) scale(1);
+  opacity: 1;
+}
+
+header {
+  padding: 2rem 1rem;
+}
+
+main {
+  padding: 1rem 2rem;
+}
 
