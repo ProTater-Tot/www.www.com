@@ -3,81 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>We Are Warriors - Web Clone</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #1e1e2e;
-      color: #ffffff;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    canvas {
-      background-color: #87ceeb;
-      border: 4px solid #313244;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-    }
-    .ui-bar {
-      display: flex;
-      gap: 12px;
-      margin-top: 15px;
-      background: #313244;
-      padding: 12px 20px;
-      border-radius: 8px;
-      align-items: center;
-    }
-    .stats {
-      margin-right: 20px;
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-    button {
-      padding: 10px 16px;
-      font-size: 0.95rem;
-      font-weight: bold;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      background-color: #f9e2af;
-      color: #11111b;
-      transition: transform 0.1s, background-color 0.2s;
-    }
-    button:hover:not(:disabled) {
-      background-color: #fab387;
-      transform: translateY(-2px);
-    }
-    button:disabled {
-      background-color: #585b70;
-      color: #a6adc8;
-      cursor: not-allowed;
-    }
-    .upgrade-btn {
-      background-color: #a6e3a1;
-    }
-    .upgrade-btn:hover:not(:disabled) {
-      background-color: #94e2d5;
-    }
-  </style>
+  <title>We Are Warriors - Stone Age</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <canvas id="gameCanvas" width="800" height="350"></canvas>
-
-  <div class="ui-bar">
-    <div class="stats">
-      <div>Age: <span id="ageDisplay">Stone Age</span></div>
-      <div>Food: <span id="foodDisplay">0</span></div>
+  <div class="game-wrapper">
+    <!-- Top Header -->
+    <div class="top-bar">
+      <div class="badge era-badge">Age 1: Stone Age</div>
+      <div class="badge coin-badge">🪙 <span id="coinDisplay">0</span></div>
     </div>
 
-    <button id="spawnBasic" onclick="spawnUnit('basic')">Clubman (10 Food)</button>
-    <button id="spawnRanged" onclick="spawnUnit('ranged')">Slinger (25 Food)</button>
-    <button id="spawnTank" onclick="spawnUnit('tank')">Dino Rider (50 Food)</button>
-    <button id="upgradeFood" class="upgrade-btn" onclick="upgradeFoodRate()">Upgrade Food (30 Food)</button>
+    <!-- Main Battlefield -->
+    <div class="canvas-container">
+      <canvas id="gameCanvas" width="850" height="380"></canvas>
+
+      <!-- Out-of-Match Upgrade Menu Overlay -->
+      <div id="menuOverlay" class="overlay">
+        <h1 id="menuTitle">WE ARE WARRIORS</h1>
+        <p id="menuSubtitle">Defeat enemies to earn coins and upgrade your tribe!</p>
+
+        <div class="upgrade-grid">
+          <div class="upgrade-card">
+            <h3>🍖 Food Production</h3>
+            <p>Level <span id="foodLvlDisplay">1</span> (<span id="foodRateDisplay">1.2</span>/s)</p>
+            <button id="btnUpgradeFood" onclick="buyUpgrade('food')">Upgrade (🪙 15)</button>
+          </div>
+
+          <div class="upgrade-card">
+            <h3>🏰 Base Health</h3>
+            <p>Level <span id="baseLvlDisplay">1</span> (<span id="baseHpDisplay">200</span> HP)</p>
+            <button id="btnUpgradeBase" onclick="buyUpgrade('base')">Upgrade (🪙 15)</button>
+          </div>
+
+          <div class="upgrade-card">
+            <h3>🏹 Unlock Slinger</h3>
+            <p id="slingerStatus">Ranged Unit (Cost: 18 Food)</p>
+            <button id="btnUnlockSlinger" onclick="buyUpgrade('slinger')">Unlock (🪙 30)</button>
+          </div>
+
+          <div class="upgrade-card">
+            <h3>🦖 Unlock Dino Rider</h3>
+            <p id="dinoStatus">Heavy Tank (Cost: 40 Food)</p>
+            <button id="btnUnlockDino" onclick="buyUpgrade('dino')">Unlock (🪙 75)</button>
+          </div>
+        </div>
+
+        <button class="battle-btn" onclick="startBattle()">⚔️ START BATTLE</button>
+      </div>
+    </div>
+
+    <!-- In-Game Bottom Spawn Controls -->
+    <div id="battleControls" class="bottom-bar hidden">
+      <div class="food-box">
+        <div class="food-label">🍖 FOOD: <span id="foodDisplay">0</span></div>
+        <div class="food-bar-bg">
+          <div id="foodProgress" class="food-bar-fill"></div>
+        </div>
+      </div>
+
+      <div class="unit-buttons">
+        <button id="btnSpawnClubman" class="unit-btn" onclick="spawnUnit('clubman')">
+          <span class="unit-name">Clubman</span>
+          <span class="unit-cost">🍖 8</span>
+        </button>
+
+        <button id="btnSpawnSlinger" class="unit-btn hidden" onclick="spawnUnit('slinger')">
+          <span class="unit-name">Slinger</span>
+          <span class="unit-cost">🍖 18</span>
+        </button>
+
+        <button id="btnSpawnDino" class="unit-btn hidden" onclick="spawnUnit('dino')">
+          <span class="unit-name">Dino Rider</span>
+          <span class="unit-cost">🍖 40</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <script src="game.js"></script>
