@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GunSpin Web</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="game-container">
+    <!-- Top HUD -->
+    <div class="hud">
+      <div class="hud-item">STAGE <span id="stageNum">1</span></div>
+      <div class="progress-wrap">
+        <div id="progressBar" class="progress-fill"></div>
+        <span id="progressText">0%</span>
+      </div>
+      <div class="hud-item coins">🪙 <span id="coinText">0</span></div>
+    </div>
+
+    <!-- Main Canvas -->
+    <div class="canvas-box">
+      <canvas id="gameCanvas" width="850" height="440"></canvas>
+
+      <!-- In-Flight Ammo Counter -->
+      <div id="ammoHud" class="ammo-hud hidden"></div>
+
+      <!-- Upgrade & Gun Selection Overlay -->
+      <div id="menuOverlay" class="overlay">
+        <h1 id="menuHeading">GUNSPIN</h1>
+        <p id="menuSub">Click or press SPACE to shoot & spin forward!</p>
+
+        <!-- Weapon Selector Bar -->
+        <div class="gun-bar">
+          <button class="nav-btn" onclick="cycleGun(-1)">◀</button>
+          <div class="gun-card">
+            <div class="gun-title">
+              <span id="gunName">Rusty Revolver</span>
+              <span id="gunTag" class="tag">EQUIPPED</span>
+            </div>
+            <div id="gunBonusText" class="gun-bonus">Base Weapon (No Bonus)</div>
+          </div>
+          <button class="nav-btn" onclick="cycleGun(1)">▶</button>
+        </div>
+
+        <!-- 4 Attribute Upgrades -->
+        <div class="upgrade-grid">
+          <div class="upg-card">
+            <div class="upg-header">
+              <span>💥 First Shot Power</span>
+              <span id="lvlFirst">Lv. 1</span>
+            </div>
+            <button id="btnFirst" onclick="buyUpgrade('firstShot')">🪙 15</button>
+          </div>
+
+          <div class="upg-card">
+            <div class="upg-header">
+              <span>🔥 Shot Power</span>
+              <span id="lvlPower">Lv. 1</span>
+            </div>
+            <button id="btnPower" onclick="buyUpgrade('power')">🪙 15</button>
+          </div>
+
+          <div class="upg-card">
+            <div class="upg-header">
+              <span>🧨 Max Ammo</span>
+              <span id="lvlAmmo">Lv. 1</span>
+            </div>
+            <button id="btnAmmo" onclick="buyUpgrade('ammo')">🪙 20</button>
+          </div>
+
+          <div class="upg-card">
+            <div class="upg-header">
+              <span>📦 Box Boost Speed</span>
+              <span id="lvlBoost">Lv. 1</span>
+            </div>
+            <button id="btnBoost" onclick="buyUpgrade('boost')">🪙 15</button>
+          </div>
+        </div>
+
+        <button class="play-btn" onclick="startRun()">🔥 TAP TO LAUNCH</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
