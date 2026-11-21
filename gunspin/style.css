@@ -1,0 +1,266 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  background: #12141d;
+  color: #fff;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.game-container {
+  width: 866px;
+  background: #1c1f2e;
+  border: 4px solid #2e334d;
+  border-radius: 16px;
+  padding: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.75);
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #25293d;
+  padding: 10px 18px;
+  border-radius: 10px 10px 0 0;
+  gap: 16px;
+}
+
+.hud-item {
+  font-weight: 900;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+}
+
+.coins {
+  color: #ffd166;
+}
+
+.progress-wrap {
+  position: relative;
+  flex: 1;
+  max-width: 440px;
+  height: 22px;
+  background: #11131c;
+  border-radius: 11px;
+  border: 2px solid #3a405e;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0%;
+  background: linear-gradient(90deg, #f59e0b, #ef4444);
+  transition: width 0.08s linear;
+}
+
+.progress-wrap span {
+  position: relative;
+  z-index: 2;
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-shadow: 0 1px 2px #000;
+}
+
+.canvas-box {
+  position: relative;
+  width: 850px;
+  height: 440px;
+  overflow: hidden;
+  border-radius: 0 0 10px 10px;
+}
+
+canvas {
+  display: block;
+  cursor: pointer;
+}
+
+.ammo-hud {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  background: rgba(15, 17, 26, 0.75);
+  padding: 8px 14px;
+  border-radius: 20px;
+  border: 2px solid #3a405e;
+  pointer-events: none;
+}
+
+.bullet-pip {
+  width: 10px;
+  height: 22px;
+  background: #facc15;
+  border-radius: 3px 3px 1px 1px;
+  box-shadow: 0 0 6px rgba(250, 204, 21, 0.6);
+}
+
+.bullet-pip.empty {
+  background: #334155;
+  box-shadow: none;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(16, 18, 28, 0.88);
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.overlay h1 {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #facc15;
+  text-shadow: 0 4px 0 #92400e;
+  letter-spacing: 1.5px;
+}
+
+.overlay p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  margin-bottom: 14px;
+}
+
+.gun-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.nav-btn {
+  width: 38px;
+  height: 54px;
+  background: #334155;
+  color: #fff;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.gun-card {
+  width: 380px;
+  background: #252a3d;
+  border: 2px solid #475569;
+  border-radius: 10px;
+  padding: 10px 16px;
+  text-align: center;
+}
+
+.gun-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  background: #10b981;
+  color: #052e16;
+}
+
+.tag.locked {
+  background: #ef4444;
+  color: #fff;
+}
+
+.gun-bonus {
+  font-size: 0.85rem;
+  color: #38bdf8;
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.upgrade-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 580px;
+  margin-bottom: 16px;
+}
+
+.upg-card {
+  background: #252a3d;
+  border: 2px solid #3b425e;
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upg-header {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.upg-header span:last-child {
+  color: #94a3b8;
+  font-size: 0.8rem;
+}
+
+.upg-card button {
+  background: #3b82f6;
+  color: #fff;
+  font-weight: 800;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 #1d4ed8;
+}
+
+.upg-card button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.play-btn {
+  background: linear-gradient(180deg, #facc15, #eab308);
+  color: #18181b;
+  font-size: 1.15rem;
+  font-weight: 900;
+  padding: 12px 38px;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #a16207;
+}
+
+.play-btn:active {
+  transform: translateY(2px);
+}
